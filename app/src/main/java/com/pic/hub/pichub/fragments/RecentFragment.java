@@ -24,7 +24,7 @@ public class RecentFragment extends BaseFragment {
 
         RecentViewModel viewModel = ViewModelProviders.of(this).get(RecentViewModel.class);
         IViewModelListener viewModelListener = (IViewModelListener) this;
-        viewModelListener.getPhotos("recent", viewModel);
+        viewModelListener.getPhotos("recent", false,viewModel);
     }
 
 }

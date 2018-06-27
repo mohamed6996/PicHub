@@ -55,12 +55,24 @@ public abstract class BaseFragment extends Fragment implements IViewModelListene
 
 
     @Override
-    public void getPhotos(String order, BaseViewModel viewModel) {
-        viewModel.getPhotos(order).observe(this, new Observer<PagedList<Photo>>() {
+    public void getPhotos(String order, boolean isCategory,BaseViewModel viewModel) {
+        viewModel.getPhotos(order,isCategory).observe(this, new Observer<PagedList<Photo>>() {
             @Override
             public void onChanged(@Nullable PagedList<Photo> photos) {
                 adapter.submitList(photos);
             }
         });
     }
+
+    @Override
+    public void getSearch(String searchQuery, boolean isCategory,BaseViewModel viewModel) {
+        viewModel.getPhotos(searchQuery,isCategory).observe(this, new Observer<PagedList<Photo>>() {
+            @Override
+            public void onChanged(@Nullable PagedList<Photo> photos) {
+                adapter.submitList(photos);
+            }
+        });
+    }
+
+
 }

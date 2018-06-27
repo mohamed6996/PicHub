@@ -1,5 +1,6 @@
 package com.pic.hub.pichub;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -10,14 +11,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.pic.hub.pichub.adapter.ViewPagerAdapter;
 import com.pic.hub.pichub.fragments.CategoryFragment;
 import com.pic.hub.pichub.fragments.EditorChoiceFragment;
 import com.pic.hub.pichub.fragments.FavoriteFragment;
 import com.pic.hub.pichub.fragments.PopularFragment;
 import com.pic.hub.pichub.fragments.RecentFragment;
+import com.pic.hub.pichub.fragments.SearchFragment;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     ArrayList<Fragment> fragmentList;
     ArrayList<String> titleList;
+    MaterialSearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        searchView = findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(MainActivity.this, query, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getBaseContext(),SearchResultActivity.class);
+                intent.putExtra("search_query",query);
+                intent.putExtra("is_category",false);
+                startActivity(intent);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
 
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
@@ -56,8 +80,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setCurrentItem(1, true);
 
 
-
-
     }
 
 
@@ -65,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        MenuItem item = menu.findItem(R.id.action_search);
+        searchView.setMenuItem(item);
         return true;
     }
 
@@ -76,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_search) {
             return true;
         }
 

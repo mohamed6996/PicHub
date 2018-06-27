@@ -39,7 +39,6 @@ public class RecyclerViewAdapter extends PagedListAdapter<Photo,RecyclerViewAdap
     }
 
 
-
     public class PhotoViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
 

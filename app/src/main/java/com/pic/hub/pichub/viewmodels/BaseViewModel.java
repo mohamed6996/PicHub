@@ -7,6 +7,7 @@ import android.arch.paging.PagedList;
 import android.support.annotation.NonNull;
 
 import com.pic.hub.pichub.PhotoLocalCache;
+import com.pic.hub.pichub.R;
 import com.pic.hub.pichub.Repository;
 import com.pic.hub.pichub.api.ApiClient;
 import com.pic.hub.pichub.api.ApiInterface;
@@ -34,16 +35,22 @@ public abstract class BaseViewModel extends AndroidViewModel {
     }
 
 
-    public LiveData<PagedList<Photo>> getPhotos(String order) {
+    public LiveData<PagedList<Photo>> getPhotos(String order, boolean isCategory) {
         if (repository == null) {
             init();
-            apiSearchResult = repository.getLivePhotos(order);
+            apiSearchResult = repository.getLivePhotos(order,isCategory);
             photos = apiSearchResult.getPhotos();
             networkState = apiSearchResult.getNetworkError();
 
         }
         return photos;
     }
+
+
+
+
+
+
 
     private void init() {
         AppDatabase database = AppDatabase.getInstance(getApplication());

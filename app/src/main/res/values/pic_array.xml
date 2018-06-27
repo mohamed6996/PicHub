@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="pic_list">
+        <item>@drawable/animal_dog</item>
+        <item>@drawable/building_church</item>
+        <item>@drawable/backgrond_stones</item>
+        <item>@drawable/business_meeting</item>
+        <item>@drawable/computer_laptop</item>
+        <item>@drawable/education_open_book</item>
+        <item>@drawable/emotions_father</item>
+        <item>@drawable/fashion_actress</item>
+        <item>@drawable/food_muffin</item>
+        <item>@drawable/health_people</item>
+        <item>@drawable/industry_power_station</item>
+        <item>@drawable/music_violin</item>
+        <item>@drawable/nature_sky</item>
+        <item>@drawable/airport</item>
+        <item>@drawable/transportation_cycle</item>
+        <item>@drawable/sports</item>
+        <item>@drawable/religion_book</item>
+        <item>@drawable/science_bacteria</item>
+        <item>@drawable/places_eiffel_tower</item>
+        <item>@drawable/people_alone</item>
+
+    </array>
+
+    <string-array name="pic_list_names">
+
+        <item>animals</item>
+        <item>buildings</item>
+        <item>backgrounds</item>
+        <item>business</item>
+        <item>computer</item>
+        <item>education</item>
+        <item>feelings</item>
+        <item>fashion</item>
+        <item>food</item>
+        <item>health</item>
+        <item>industry</item>
+        <item>music</item>
+        <item>nature</item>
+        <item>travel</item>
+        <item>transportation</item>
+        <item>sports</item>
+        <item>religion</item>
+        <item>science</item>
+        <item>places</item>
+        <item>people</item>
+
+
+
+
+
+
+    </string-array>
+</resources>

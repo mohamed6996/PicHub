@@ -20,9 +20,9 @@ public class Repository {
         this.apiInterface = apiInterface;
     }
 
-    public ApiSearchResult getLivePhotos(String order) {
+    public ApiSearchResult getLivePhotos(String order,  boolean isCategory) {//todo if statement
         DataSource.Factory<Integer, Photo> dataSourceFactory = cache.getSavedPhotos(order);
-        PhotoBoundaryCallback boundaryCallback = new PhotoBoundaryCallback(cache, apiInterface,order);
+        PhotoBoundaryCallback boundaryCallback = new PhotoBoundaryCallback(cache, apiInterface,order,isCategory);
         LiveData<String> networkError = boundaryCallback.getNetworkError();
 
         PagedList.Config config = new PagedList.Config.Builder()

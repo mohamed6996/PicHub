@@ -24,7 +24,7 @@ public class PopularFragment extends BaseFragment {
         PopularViewModel viewModel = ViewModelProviders.of(this).get(PopularViewModel.class);
 
         IViewModelListener viewModelListener = (IViewModelListener) this;
-        viewModelListener.getPhotos("popular", viewModel);
+        viewModelListener.getPhotos("popular",false, viewModel);
 
     }
 
