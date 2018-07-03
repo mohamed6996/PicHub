@@ -68,8 +68,19 @@ dependencies {
     //glide
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+    // palatte
+    implementation 'com.github.florent37:glidepalette:2.1.2'
     // search view
     implementation "com.miguelcatalan:materialsearchview:1.4.0"
+    // circular image
+    implementation "de.hdodenhof:circleimageview:$circleimageviewVersion"
+    //flex box layout
+    implementation "com.google.android:flexbox:$flexboxVersion"
+    // animating image view
+    implementation "com.flaviofaria:kenburnsview:$kenburnsviewVersion"
+    //circular progressbar
+    implementation "com.dinuscxj:circleprogressbar:$circleprogressbarVwesion"
+
     compile('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
         transitive = true;
     }

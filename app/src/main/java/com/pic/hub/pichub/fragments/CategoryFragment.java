@@ -69,8 +69,8 @@ public class CategoryFragment extends Fragment implements onRecyclerViewClickLis
 
         pic_list_names = getResources().getStringArray(R.array.pic_list_names);
 
-        adapter = new CategoryRecyclerViewAdapter(pic_list, getContext(), this);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        adapter = new CategoryRecyclerViewAdapter(pic_list, pic_list_names, getContext(), this);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
         recyclerView.setAdapter(adapter);
 
     }
@@ -78,10 +78,13 @@ public class CategoryFragment extends Fragment implements onRecyclerViewClickLis
     @Override
     public void onClick(int clickedItemIndex) {
         query = pic_list_names[clickedItemIndex];
-        Toast.makeText(getContext(), query, Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getContext(),SearchResultActivity.class);
-        intent.putExtra("search_query",query);
-        intent.putExtra("is_category",true);
+        Intent intent = new Intent(getContext(), SearchResultActivity.class);
+        intent.putExtra("search_query", query);
+        intent.putExtra("is_category", true);
         startActivity(intent);
+
+
     }
+
+
 }

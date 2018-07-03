@@ -71,7 +71,7 @@ public class PhotoBoundaryCallback extends PagedList.BoundaryCallback<Photo> {
                     isRequestInProgress = false;
                 }
             });
-        } else if (isCategory) {
+        } else if (isCategory) { // for categories
             apiInterface.searchCategories(lastRequestPage, NETWORK_PAGE_SIZE, order).enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -83,7 +83,7 @@ public class PhotoBoundaryCallback extends PagedList.BoundaryCallback<Photo> {
 
                 }
             });
-        } else { // for search and categories
+        } else { // for search
             apiInterface.searchPhotos(lastRequestPage, NETWORK_PAGE_SIZE, order).enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

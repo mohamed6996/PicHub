@@ -11,24 +11,29 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.gson.Gson;
+import com.pic.hub.pichub.OnPicClickListener;
 import com.pic.hub.pichub.R;
 import com.pic.hub.pichub.model.Photo;
 
-public class RecyclerViewAdapter extends PagedListAdapter<Photo,RecyclerViewAdapter.PhotoViewHolder > {
-   private Context context;
+public class RecyclerViewAdapter extends PagedListAdapter<Photo, RecyclerViewAdapter.PhotoViewHolder> {
+    private Context context;
+    private OnPicClickListener listener;
 
-    public RecyclerViewAdapter(Context context) {
+    public RecyclerViewAdapter(Context context, OnPicClickListener listener) {
         super(DIFF_CALLBACK);
         this.context = context;
+        this.listener = listener;
     }
 
 
     @NonNull
     @Override
     public RecyclerViewAdapter.PhotoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view_item = LayoutInflater.from(parent.getContext()).inflate(R.layout.photo_list_item, parent, false);
+        View view_item = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_photo, parent, false);
         return new PhotoViewHolder(view_item);
 
     }
@@ -39,26 +44,40 @@ public class RecyclerViewAdapter extends PagedListAdapter<Photo,RecyclerViewAdap
     }
 
 
-    public class PhotoViewHolder extends RecyclerView.ViewHolder {
+    public class PhotoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
+        Gson gson = new Gson();
+        Photo photo;
+        RequestOptions options;
 
         public PhotoViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             imageView = itemView.findViewById(R.id.recyclerView_photo);
+            options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.appbar_back_ground).error(R.drawable.appbar_back_ground);
+        }
+
+        void bind(Photo photo) {
+            if (photo != null)
+                this.photo = photo;
+            Glide.with(context).setDefaultRequestOptions(options)
+                    .load(photo.getLargeImageURL())
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(imageView);
+
+//            ViewGroup.LayoutParams params =imageView.getLayoutParams();
+//            if (params instanceof FlexboxLayoutManager.LayoutParams){
+//                ((FlexboxLayoutManager.LayoutParams) params).setFlexGrow(1f);
+//            }
 
         }
 
-         void bind(Photo photo) {
-            if (photo != null)
-
-                Glide.with(context).setDefaultRequestOptions(new RequestOptions().placeholder(R.drawable.appbar_back_ground).error(R.drawable.ic_launcher_background))
-                        .load(photo.getPreviewURL())
-                        .transition(DrawableTransitionOptions.withCrossFade())
-                        .into(imageView);
-
+        @Override
+        public void onClick(View v) {
+            String json = gson.toJson(photo);
+            listener.onPicClick(json);
         }
     }
-
 
 
     public static final DiffUtil.ItemCallback<Photo> DIFF_CALLBACK = new DiffUtil.ItemCallback<Photo>() {

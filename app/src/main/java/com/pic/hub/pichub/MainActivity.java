@@ -18,10 +18,8 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.pic.hub.pichub.adapter.ViewPagerAdapter;
 import com.pic.hub.pichub.fragments.CategoryFragment;
 import com.pic.hub.pichub.fragments.EditorChoiceFragment;
-import com.pic.hub.pichub.fragments.FavoriteFragment;
 import com.pic.hub.pichub.fragments.PopularFragment;
 import com.pic.hub.pichub.fragments.RecentFragment;
-import com.pic.hub.pichub.fragments.SearchFragment;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -115,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
         addData(new RecentFragment(), "recent");
         addData(new PopularFragment(), "popular");
         addData(new EditorChoiceFragment(), "editors choice");
-        addData(new FavoriteFragment(), "favorite");
 
     }
 

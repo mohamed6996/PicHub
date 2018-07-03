@@ -21,7 +21,8 @@ public class Photo {
     private String fullHDURL;
     private String tags;
     private int likes;
-    private int favourites;
+    private long favorites;
+    private int views;
     private double imageHeight;
     private double imageWidth;
     private long downloads;
@@ -33,7 +34,7 @@ public class Photo {
     private String order;
 
     public Photo(String id, String previewURL, String webformatURL, String imageURL, String largeImageURL,
-                 String fullHDURL, String tags, int likes, int favourites, double imageHeight, double imageWidth,
+                 String fullHDURL, String tags, int likes, long favorites, int views, double imageHeight, double imageWidth,
                  long downloads, long comments, String user, String userImageURL, String order) {
 
         this.id = id;
@@ -44,7 +45,8 @@ public class Photo {
         this.fullHDURL = fullHDURL;
         this.tags = tags;
         this.likes = likes;
-        this.favourites = favourites;
+        this.favorites = favorites;
+        this.views = views;
         this.imageHeight = imageHeight;
         this.imageWidth = imageWidth;
         this.downloads = downloads;
@@ -98,8 +100,12 @@ public class Photo {
         return userImageURL;
     }
 
-    public int getFavourites() {
-        return favourites;
+    public long getFavorites() {
+        return favorites;
+    }
+
+    public int getViews() {
+        return views;
     }
 
     public double getImageHeight() {
@@ -133,7 +139,7 @@ public class Photo {
                 ", fullHDURL='" + fullHDURL + '\'' +
                 ", tags='" + tags + '\'' +
                 ", likes=" + likes +
-                ", favourites=" + favourites +
+                ", favourites=" + favorites +
                 ", imageHeight=" + imageHeight +
                 ", imageWidth=" + imageWidth +
                 ", downloads=" + downloads +
